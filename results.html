@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Submission Results</title>
+</head>
+
+<body style="margin-left: 50px; font-size: 18px;">
+
+    <h2>FORM SUBMISSION RESULTS</h2>
+    <p style="font-size: 18px;" id="fnamedis"></p>
+    <p style="font-size: 18px;" id="lnamedis"></p>
+    <p style="font-size: 18px;" id="sectiondis"></p>
+    <p style="font-size: 18px;" id="subjectdis"></p>
+    <p style="font-size: 18px;" id="countrydis"></p>
+
+    <script>
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        document.getElementById("fnamedis").innerText = "First Name: " + (urlParams.get("fname") || "No first name provided");
+        document.getElementById("lnamedis").innerText = "Last Name: " + (urlParams.get("lname") || "No last name provided");
+        document.getElementById("sectiondis").innerText = "Section: " + (urlParams.get("mysection") || "No section selected");
+        
+        const subjects = [];
+        if (urlParams.getAll("subject")) {
+            urlParams.getAll("subject").forEach(subject => subjects.push(subject));
+        }
+        document.getElementById("subjectdis").innerText = "Subject: " + (subjects.length > 0 ? subjects.join(", ") : "No subject selected");
+        
+        document.getElementById("countrydis").innerText = "Country: " + (urlParams.get("country") || "No country provided");
+    </script>
+
+</body>
+
+</html>
