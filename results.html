@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Submission Results</title>
+</head>
+
+<body style="margin-left: 50px; font-size: 18px;">
+
+    <h2>FORM SUBMISSION RESULTS</h2>
+    <p style="font-size: 18px;" id="fnamedis"></p>
+    <p style="font-size: 18px;" id="lnamedis"></p>
+    <p style="font-size: 18px;" id="sectiondis"></p>
+    <p style="font-size: 18px;" id="subjectdis"></p>
+    <p style="font-size: 18px;" id="studentTypedis"></p>
+
+    <script>
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const fname = (urlParams.get("fname") || "No first name provided");
+        const lname = (urlParams.get("lname") || "No last name provided");
+        const section = (urlParams.get("mysection") || "No section selected");
+        
+        const subjects = urlParams.getAll("subject");
+        const subjectsText = subjects.length ? subjects.join(", ") : "No subject selected";
+
+        const studentType = (urlParams.get("studentType") || "No student type selected");
+    
+        document.getElementById("fnamedis").innerText = "First Name: " + fname;
+        document.getElementById("lnamedis").innerText = "Last Name: " + lname;
+        document.getElementById("sectiondis").innerText = "Section: " + section;
+        document.getElementById("subjectdis").innerText = "Subject: " + subjectsText;
+        document.getElementById("studentTypedis").innerText = "Student Type: " + studentType;
+        
+    </script>
+
+</body>
+
+</html>
