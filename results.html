@@ -17,17 +17,21 @@
         
         const urlParams = new URLSearchParams(window.location.search);
         
-        document.getElementById("fnamedis").innerText = "First Name: " + (urlParams.get("fname") || "No first name provided");
-        document.getElementById("lnamedis").innerText = "Last Name: " + (urlParams.get("lname") || "No last name provided");
-        document.getElementById("sectiondis").innerText = "Section: " + (urlParams.get("mysection") || "No section selected");
+        const fname = (urlParams.get("fname") || "No first name provided");
+        const lname = (urlParams.get("lname") || "No last name provided");
+        const section = (urlParams.get("mysection") || "No section selected");
         
-        const subjects = [];
-        if (urlParams.getAll("subject")) {
-            urlParams.getAll("subject").forEach(subject => subjects.push(subject));
-        }
-        document.getElementById("subjectdis").innerText = "Subject: " + (subjects.length > 0 ? subjects.join(", ") : "No subject selected");
+        const subjects = urlParams.getAll("subject");
+        const subjectsText = subjects.length ? subjects.join(", ") : "No subject selected";
+
+        const country = (urlParams.get("country") || "No country provided");
+    
+        document.getElementById("fnamedis").innerText = "First Name: " + fname;
+        document.getElementById("lnamedis").innerText = "Last Name: " + lname;
+        document.getElementById("sectiondis").innerText = "Section: " + section;
+        document.getElementById("subjectdis").innerText = "Subject: " + subjectsText;
+        document.getElementById("countrydis").innerText = "Country: " + country;
         
-        document.getElementById("countrydis").innerText = "Country: " + (urlParams.get("country") || "No country provided");
     </script>
 
 </body>
